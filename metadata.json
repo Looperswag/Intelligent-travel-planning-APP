@@ -1,0 +1,5 @@
+{
+  "name": "Wanderlust AI Planner",
+  "description": "An intelligent travel planning application that generates detailed, downloadable HTML itineraries based on user preferences, images, and social links using Gemini 3.",
+  "requestFramePermissions": []
+}
