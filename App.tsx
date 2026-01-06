@@ -98,7 +98,7 @@ export default function App() {
 
   // 模拟侧边栏 Agent 阶段的视觉流转，配合真实的流式输出
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: any;
     if (loadingState === LoadingState.GENERATING) {
       setAgentStage(AgentStage.INGESTING);
       

@@ -1,17 +1,17 @@
 
-<img width="1279" height="719" alt="123" src="https://github.com/user-attachments/assets/0ce1be64-27ca-43fb-9830-36a21e9e54ef" />
+![Intelligent Travel Planning Banner](https://github.com/user-attachments/assets/26b0144f-c68e-4a6c-8515-51a8b139049d)
 
 <div align="center">
 
 # Wanderlust AI Planner
-### 下一代智能旅行策展人 | Next-Gen Agentic Travel Planner
+### 基于 Gemini 3 Pro 的下一代智能旅行策展人 | Next-Gen Agentic Travel Planner
 
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
-[![Gemini](https://img.shields.io/badge/Google%20Gemini-3.0%20Flash-orange?logo=google)](https://ai.google.dev/)
+[![Gemini](https://img.shields.io/badge/Google%20Gemini-3%20Pro-4285F4?logo=google)](https://ai.google.dev/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-Morandi-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
 
-[功能特性](#-核心功能) • [与众不同](#-为什么选择-wanderlust) • [快速开始](#-快速开始-本地运行) • [技术栈](#-技术栈)
+[核心亮点](#-核心亮点) • [设计巧思](#-设计巧思-design-philosophy) • [技术架构](#-技术架构-architecture) • [快速开始](#-快速开始-getting-started)
 
 </div>
 
@@ -19,85 +19,94 @@
 
 ## 📖 项目简介
 
-**Wanderlust AI Planner** 不仅仅是一个简单的行程生成器，它是一个基于 **Google Gemini 3** 模型构建的多智能体（Multi-Agent）旅行规划系统。
+**Wanderlust AI Planner** 是一款突破性的旅行规划应用，旨在解决传统 AI 生成长行程时常见的“虎头蛇尾”和“幻觉”问题。
 
-通过模拟专业的旅行策划工作流（Ingestor -> Researcher -> Planner -> Finalizer），Wanderlust 能够理解模糊的旅行意图，进行全网事实核查，并最终生成一份包含**深度见解**、**比价信息**且**视觉精美**的 HTML 杂志级行程单。
+本项目基于 **Google Gemini 3 Pro** 模型构建，采用**结构化模版强制（Structural Templating）**技术，能够生成包含**每日地图导航**、**深度文化见解**以及**自适应视觉风格**的杂志级 HTML 行程单。它不仅仅是罗列地点，更是为您策划一场有灵魂的旅程。
 
-## ✨ 核心功能
+---
 
-*   **🗣️ 自然语言交互**：无需复杂的表单，只需像聊天一样告诉 AI 您的想法（如："想去京都看红叶，喜欢小众咖啡馆"）。
-*   **🖼️ 多模态输入**：支持上传图片或视频作为灵感参考，AI 会分析图片风格并融入行程。
-*   **🧠 透明思维链 (CoT)**：实时展示 AI 的思考过程。您可以看到 "Researcher Agent" 如何搜索航班，"Critic Agent" 如何评估路线可行性。
-*   **🎨 自适应莫兰迪 UI**：生成的行程单会根据目的地氛围自动调整配色（例如：京都-禅意绿，圣托里尼-海盐蓝）。
-*   **📄 杂志级交付物**：生成的行程是一个独立的 HTML 网页，排版精美，支持导出为 **PDF** 或下载 **HTML 源码** 离线查看。
-*   **🔗 智能比价与导航**：行程卡片内置 Google Maps 导航链接及官方 vs OTA 价格对比。
+## ✨ 核心亮点
 
-## 🦄 为什么选择 Wanderlust？
+### 1. 🧠 Gemini 3 Pro 驱动 (Upgraded)
+摒弃了轻量级模型，核心 Agent 全面升级至 **Gemini 3 Pro Preview**。利用其强大的推理能力和超长上下文窗口（Context Window），确保从第一天到最后一天的规划质量始终如一，逻辑严密。
 
-市面上的旅行 App 浩如烟海，Wanderlust 有何不同？
+### 2. 🛡️ 解决 "Lost in the Middle" 现象
+针对大模型生成长文本时容易出现的“注意力衰减”问题，我们设计了 **Anti-Laziness Protocol (反偷懒协议)**：
+*   **全量细节保留**：强制模型对第 7 天的描述必须与第 1 天一样详尽。
+*   **组件强制渲染**：通过代码约束，确保每一天的行程卡片都包含 **Google Maps 路线导航按钮**，杜绝组件丢失。
+*   **结构化输出**：不再依赖自由文本，而是要求 AI 填充严格的 HTML 结构槽位。
 
-| 特性 | ❌ 传统攻略 / ChatGPT 文字版 | ✅ Wanderlust AI Planner |
-| :--- | :--- | :--- |
-| **生成逻辑** | 黑盒输出，经常出现"幻觉"（不存在的景点） | **Evidence-Based (基于证据)**：集成 Google Search Grounding，实时核验营业时间与票价。 |
-| **视觉体验** | 枯燥的文字列表或 Markdown | **自适应杂志排版**：根据目的地 "Vibe" 动态生成 Tailwind 配色方案与 Hero 图片。 |
-| **规划深度** | 简单的"点到点"罗列 | **深度见解**：提供"Booking Intelligence"（预订建议）与 "Deep Dive"（深度玩法）。 |
-| **交互性** | 静态文本，无法互动 | **完全可交互**：内置地图跳转、外部链接、反馈评价与社交分享。 |
-| **可移植性** | 只能在 App 内查看 | **零依赖交付**：生成单一 HTML 文件，可在任何浏览器打开，永久保存。 |
+### 3. 📑 智能摘要与杂志级排版
+*   **Journey Overview**：AI 会在行程开头自动生成“旅程概览”和 4 个核心亮点（Highlights），让您一眼通过图标和摘要掌握旅程精髓。
+*   **自适应 UI**：行程单并非千篇一律。AI 会分析目的地氛围（Vibe），自动为 HTML 生成一套 **Tailwind 配色方案**（例如：京都-石墨绿，圣托里尼-海蓝，巴黎-玫瑰金）。
 
-## 🚀 快速开始 (本地运行)
+### 4. 🔗 真实可落地 (Evidence-Based)
+集成 Google Search Grounding，AI 规划的每一个景点、餐厅均经过实时事实核验。生成的 HTML 包含真实的 Google Maps 链接，拒绝不存在的“幽灵景点”。
 
-想要在本地体验 Wanderlust？请按照以下步骤操作：
+---
 
-### 1. 前置要求
-*   [Node.js](https://nodejs.org/) (v18 或更高版本)
-*   [Google AI Studio API Key](https://aistudio.google.com/app/apikey) (推荐使用免费的 Gemini Flash 模型)
+## 🎨 设计巧思 (Design Philosophy)
 
-### 2. 获取代码
+Wanderlust 的 UI 设计不仅仅是为了好看，而是为了营造“松弛感”和“沉浸感”。
+
+*   **莫兰迪色系 (Morandi Color System)**：
+    全站采用低饱和度的莫兰迪色（Cream, Sage, Clay, Charcoal）。这种配色方案既现代又高级，能有效降低信息密度过高带来的视觉疲劳。
+
+*   **拟态与微交互 (Glassmorphism & Micro-interactions)**：
+    *   **磨砂玻璃**：大量使用 `backdrop-blur` 营造层次感。
+    *   **流体动画**：输入框的呼吸效果、加载时的 Agent 流程可视化，让等待 AI 思考的过程本身成为一种享受。
+
+*   **Agent 工作流可视化**：
+    我们并不隐藏 AI 的思考过程。在侧边栏，你可以清晰地看到 Agent 从 `Ingesting` (解析需求) -> `Researching` (搜证) -> `Planning` (规划) -> `Finalizing` (生成 UI) 的全过程状态流转。
+
+---
+
+## 🛠 技术架构 (Architecture)
+
+*   **Frontend**: React 19 + TypeScript + Vite
+*   **AI Model**: Google Gemini 3 Pro Preview (`@google/genai` SDK)
+*   **Styling**: Tailwind CSS (Custom Config)
+*   **Streaming**: 使用 Async Generator 实现打字机式的流式 HTML 渲染
+*   **Export**: 支持一键导出 `.html` 源码或打印为 PDF
+
+---
+
+## 🚀 快速开始 (Getting Started)
+
+### 1. 克隆项目
 ```bash
 git clone https://github.com/yourusername/wanderlust-planner.git
 cd wanderlust-planner
 ```
 
-### 3. 安装依赖
+### 2. 安装依赖
 ```bash
 npm install
-# 或者
-yarn install
 ```
 
-### 4. 配置环境变量
-在项目根目录创建一个 `.env` 文件，并填入您的 API Key：
+### 3. 配置 API Key
+在项目根目录创建 `.env` 文件（请确保您有访问 Gemini 3 Pro 的权限）：
 
 ```bash
-# .env 文件内容
+# .env
 API_KEY=您的_GOOGLE_GEMINI_API_KEY
 ```
 
-> **注意**：本项目默认使用 `gemini-3-flash-preview` 模型以确保响应速度快且不易触发免费配额限制。
-
-### 5. 启动应用
+### 4. 启动开发服务器
 ```bash
 npm run dev
 ```
-浏览器打开 `http://localhost:5173` 即可开始规划您的旅程！
 
-## 🛠️ 技术栈
-
-*   **Frontend Framework**: React 19 (Hooks, Streaming)
-*   **Build Tool**: Vite
-*   **Styling**: Tailwind CSS (自定义莫兰迪色系配置)
-*   **AI SDK**: Google GenAI SDK (`@google/genai`)
-*   **Icons**: Lucide React
-*   **Streaming**: 实现了基于 Async Generator 的流式 UI 渲染
-
-## 📖 SHOWCASE
-![111](https://github.com/user-attachments/assets/6342ea88-aa3c-4e3b-bd46-611e9e50812e)
-
-![222](https://github.com/user-attachments/assets/6fac0a05-39a0-4897-8ef9-de5afd6ac895)
-
-![333](https://github.com/user-attachments/assets/540335a4-3267-44bd-aff8-5b4e28436266)
+打开浏览器访问 `http://localhost:5173`，开始体验下一代 AI 旅行规划。
 
 ---
+
+## 📸 预览
+
+*(在此处可以放几张不同目的地（如京都、巴黎）生成的不同配色行程单截图)*
+
+---
+
 <div align="center">
-Built with ❤️ using Gemini 3 & React
+Built with ❤️ by Wanderlust Team
 </div>
