@@ -23,19 +23,6 @@
 
 与传统的单一 AI 模型不同，我们将复杂的旅行规划任务拆解为多个专业领域，每个 Agent 专注于特定职责，通过并行处理和渐进式渲染，实现 **97% 的首字节时间优化**。
 
-### 🔒 安全提示
-
-**重要**: 这是一个前端应用，API 密钥会在浏览器中使用。
-
-- ⚠️ API 密钥会被暴露在客户端（前端架构的固有特性）
-- ✅ 使用有配额限制的 API 密钥
-- ✅ 定期轮换 API 密钥
-- ✅ 适合个人使用或受信任环境
-- ⚠️ 生产部署建议实现后端代理
-
-详见 [SECURITY.md](./SECURITY.md)
-
----
 
 ## 🤖 Multi-Agent 架构设计
 
@@ -326,21 +313,7 @@ wanderlust-planner/
 
 详见 [SECURITY.md](./SECURITY.md)
 
----
 
-## 🤝 贡献指南
-
-欢迎提交 Issue 和 Pull Request！
-
----
-
-## 📄 许可证
-
-MIT License
-
----
-
-<div align="center">
 Built with ❤️ by Wanderlust Team
 <br>
 Powered by <a href="https://open.bigmodel.cn/">GLM-4.7</a> • Multi-Agent Architecture
