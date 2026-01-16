@@ -1,0 +1,47 @@
+{
+  "name": "wanderlust-planner",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "基于 Multi-Agent 架构的智能旅行规划系统 - 并行处理、渐进式渲染、场景智能识别",
+  "keywords": [
+    "travel-planner",
+    "ai",
+    "glm-4.7",
+    "multi-agent",
+    "react",
+    "typescript",
+    "parallel-processing",
+    "progressive-rendering"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "date-fns": "^3.0.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vitest/ui": "^1.6.1",
+    "autoprefixer": "^10.4.18",
+    "jsdom": "^24.1.3",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vitest": "^1.6.1"
+  }
+}
