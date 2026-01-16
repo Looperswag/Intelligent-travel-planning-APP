@@ -1,5 +1,4 @@
-![Intelligent Travel Planning Banner](<img width="1279" height="719" alt="123" src="https://github.com/user-attachments/assets/57866c80-9707-4235-acdb-0e4c435b1bc8" />)
-
+<img width="1279" height="719" alt="123" src="https://github.com/user-attachments/assets/35d6f514-1209-4b7b-a189-782c48202503" />
 
 <div align="center">
 
