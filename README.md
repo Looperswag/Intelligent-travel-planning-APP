@@ -1,4 +1,5 @@
-![Intelligent Travel Planning Banner](https://github.com/user-attachments/assets/26b0144f-c68e-4a6c-8515-51a8b139049d)
+![Intelligent Travel Planning Banner](<img width="1279" height="719" alt="123" src="https://github.com/user-attachments/assets/57866c80-9707-4235-acdb-0e4c435b1bc8" />)
+
 
 <div align="center">
 
@@ -314,7 +315,7 @@ wanderlust-planner/
 详见 [SECURITY.md](./SECURITY.md)
 
 
-Built with ❤️ by Wanderlust Team
+Built with ❤️ by GENGJIAN and claude code
 <br>
 Powered by <a href="https://open.bigmodel.cn/">GLM-4.7</a> • Multi-Agent Architecture
 </div>
