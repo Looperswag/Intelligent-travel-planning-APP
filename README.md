@@ -171,16 +171,16 @@ Phase 5: 渐进式渲染       →  流式输出     (持续)
 
 #### 8 大场景智能识别
 
-| 场景类型 | 图标 | 特色 | 适用人群 |
+| 场景类型 | 图标组件 | 特色 | 适用人群 |
 |:--------|:----|:----|:--------|
-| **浪漫情侣** | 💕 | 减少景点数量，增加停留时间 | 情侣、蜜月、纪念日 |
-| **亲子家庭** | 👨‍👩‍👧‍👦 | 老少皆宜，节奏轻松 | 家庭出游 |
-| **户外探险** | ⛰️ | 刺激体验，挑战自我 | 户外爱好者 |
-| **商务出行** | 💼 | 高效行程，品质住宿 | 商务人士 |
-| **美食之旅** | 🍜 | 地道美食，特色餐厅 | 美食爱好者 |
-| **文化深度** | 🏛️ | 历史古迹，文化体验 | 文化爱好者 |
-| **休闲度假** | 🏖️ | 悠闲节奏，放松体验 | 度假休闲 |
-| **独行旅行** | 🎒 | 自由探索，深度体验 | 独行侠 |
+| **浪漫情侣** | Heart | 减少景点数量，增加停留时间 | 情侣、蜜月、纪念日 |
+| **亲子家庭** | Users | 老少皆宜，节奏轻松 | 家庭出游 |
+| **户外探险** | Mountain | 刺激体验，挑战自我 | 户外爱好者 |
+| **商务出行** | Briefcase | 高效行程，品质住宿 | 商务人士 |
+| **美食之旅** | Utensils | 地道美食，特色餐厅 | 美食爱好者 |
+| **文化深度** | Landmark | 历史古迹，文化体验 | 文化爱好者 |
+| **休闲度假** | Sun | 悠闲节奏，放松体验 | 度假休闲 |
+| **独行旅行** | Backpack | 自由探索，深度体验 | 独行侠 |
 
 #### 版本管理与反馈闭环
 
@@ -194,6 +194,14 @@ Phase 5: 渐进式渲染       →  流式输出     (持续)
   版本回滚    可视化展示    用户确认
 ```
 
+#### 智能搜索系统
+
+- 🌐 **多源搜索**: 整合 Tavily 网页搜索、高德地图 POI、图片搜索
+- 🔍 **智能分类**: 支持景点、餐厅、酒店、活动等分类搜索
+- 📊 **结果排序**: AI 驱动的相关性排序和过滤
+- 💾 **搜索缓存**: 自动缓存搜索结果，提升响应速度
+- 📜 **搜索历史**: 记录搜索历史，快速重复搜索
+
 ---
 
 ## 🛠 技术栈
@@ -203,7 +211,9 @@ Phase 5: 渐进式渲染       →  流式输出     (持续)
 | **前端框架** | React 18 + TypeScript | 用户界面 |
 | **构建工具** | Vite 5 | 快速开发和热更新 |
 | **样式** | Tailwind CSS (Morandi 配色) | 视觉设计 |
+| **图标系统** | lucide-react | 统一 SVG 图标 |
 | **AI 模型** | GLM-4.7 (智谱 AI) | 智能规划核心 |
+| **搜索服务** | Tavily Search API | 网页搜索和智能问答 |
 | **地图服务** | 高德地图 API | POI 数据和导航 |
 | **图片服务** | Pexels + Pixabay | 旅行配图 |
 | **状态管理** | React Context + Hooks | 全局状态 |
@@ -240,6 +250,9 @@ ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic
 ANTHROPIC_AUTH_TOKEN=your_glm_api_key_here
 ANTHROPIC_MODEL=GLM-4.7
 
+# 新增：Web 搜索服务
+VITE_TAVILY_API_KEY=your_tavily_api_key_here
+
 # 可选：图片 API
 PEXELS_API_KEY=your_pexels_api_key_here
 PIXABAY_API_KEY=your_pixabay_api_key_here
@@ -250,6 +263,7 @@ AMAP_API_KEY=your_amap_api_key_here
 
 **获取 API 密钥**：
 - GLM-4.7: https://open.bigmodel.cn/
+- Tavily Search: https://tavily.com/
 - Pexels: https://www.pexels.com/api/
 - Pixabay: https://pixabay.com/api/docs/
 - 高德地图: https://lbs.amap.com/
@@ -269,15 +283,31 @@ npm run dev
 ```
 wanderlust-planner/
 ├── components/
+│   ├── icons/                     # SVG 图标系统
+│   │   ├── mappings.ts
+│   │   └── SceneIcon.tsx
+│   ├── ui/                        # 通用 UI 组件
+│   │   └── Button.tsx
+│   ├── SearchInput.tsx            # 搜索输入组件
+│   ├── SearchHistory.tsx          # 搜索历史组件
+│   ├── SearchResultsCard.tsx      # 搜索结果卡片（支持多源）
 │   ├── InputForm.tsx              # 输入表单（支持多模态）
 │   ├── AgentLoadingScreen.tsx     # Agent 加载动画
 │   ├── SkeletonLoader.tsx         # 骨架屏组件
-│   ├── PlanPreview.tsx            # 行程预览（支持 iframe）
+│   ├── ChatMessage.tsx            # 聊天消息组件
+│   ├── ReportChatPanel.tsx        # 报告聊天面板
 │   └── views/
 │       ├── OrganizerView.tsx      # 组织者视图
 │       └── TravelerView.tsx       # 旅行者视图
+├── hooks/                         # 自定义 React Hooks
+│   ├── useTripPlan.ts             # 行程规划状态管理
+│   ├── useVersionHistory.ts       # 版本历史管理
+│   ├── useChatMessages.ts         # 聊天消息管理
+│   └── useAgentProgress.ts        # Agent 进度跟踪
 ├── services/
-│   ├── glmService.ts              # GLM-4.7 核心服务 & Agent 协调器
+│   ├── webSearchService.ts        # Tavily API 集成
+│   ├── unifiedSearchService.ts    # 统一搜索入口
+│   ├── glmService.ts              # GLM-4.7 核心服务
 │   ├── amapService.ts             # 高德地图服务
 │   ├── imageService.ts            # 图片获取服务
 │   └── agent/
@@ -285,7 +315,8 @@ wanderlust-planner/
 │       ├── sceneAgent.ts          # 场景适配 Agent
 │       ├── dayAgent.ts            # 并行生成 Agent
 │       ├── shareAgent.ts          # 分享视图 Agent
-│       └── feedbackAgent.ts       # 反馈处理 Agent
+│       ├── feedbackAgent.ts       # 反馈处理 Agent
+│       └── searchAgent.ts         # 搜索编排 Agent
 ├── contexts/
 │   └── TravelContext.tsx          # 全局状态管理
 ├── types.ts                       # TypeScript 类型定义

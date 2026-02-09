@@ -620,3 +620,65 @@ export interface SkeletonData {
   estimatedTime: number;
   vibe: string;
 }
+
+// ==================== Web Search Types ====================
+
+/**
+ * Search categories for travel-related queries
+ */
+export type SearchCategory =
+  | 'restaurant'
+  | 'attraction'
+  | 'accommodation'
+  | 'transport'
+  | 'activity'
+  | 'general';
+
+/**
+ * Web search options
+ */
+export interface WebSearchOptions {
+  query: string;
+  category?: SearchCategory;
+  location?: string;
+  days?: number;
+  maxResults?: number;
+  useCache?: boolean;
+}
+
+/**
+ * Web search result
+ */
+export interface WebSearchResult {
+  id: string;
+  title: string;
+  url: string;
+  snippet: string;
+  source: string;
+  score: number;
+  category: SearchCategory;
+  publishedDate?: string;
+  imageUrl?: string;
+}
+
+/**
+ * Search cache entry
+ */
+export interface SearchCacheEntry {
+  query: string;
+  category: SearchCategory;
+  results: WebSearchResult[];
+  timestamp: number;
+  ttl: number; // Time to live in milliseconds
+}
+
+/**
+ * Search history entry
+ */
+export interface SearchHistoryEntry {
+  id: string;
+  query: string;
+  category: SearchCategory;
+  timestamp: number;
+  resultCount: number;
+}

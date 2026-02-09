@@ -12,26 +12,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { SkeletonData, SceneType, RenderPhase } from '../types';
+import { SceneIcon } from './icons/SceneIcon';
+import { SCENE_ICONS, PHASE_ICONS } from './icons/mappings';
+import { Search, Clipboard, MapPin, Sparkles, Calendar } from 'lucide-react';
 
 interface SkeletonLoaderProps {
   skeletonData: SkeletonData;
   currentPhase?: RenderPhase;
   progress?: number; // 0-100
 }
-
-/**
- * 场景类型对应的图标
- */
-const SCENE_ICONS: Record<SceneType, string> = {
-  [SceneType.ROMANTIC]: '💕',
-  [SceneType.FAMILY]: '👨‍👩‍👧‍👦',
-  [SceneType.ADVENTURE]: '🏔️',
-  [SceneType.BUSINESS]: '💼',
-  [SceneType.FOODIE]: '🍜',
-  [SceneType.CULTURE]: '🏛️',
-  [SceneType.RELAXATION]: '🏖️',
-  [SceneType.SOLO]: '🎒'
-};
 
 /**
  * 场景类型对应的色系
@@ -81,7 +70,6 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  const sceneIcon = SCENE_ICONS[skeletonData.sceneType];
   const sceneColor = SCENE_COLORS[skeletonData.sceneType];
 
   return (
@@ -98,7 +86,12 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 
             {/* 场景图标 */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-6xl animate-pulse">{sceneIcon}</span>
+              <SceneIcon
+                sceneType={skeletonData.sceneType}
+                size="3xl"
+                color="white"
+                className="w-16 h-16 animate-pulse"
+              />
             </div>
           </div>
 
@@ -116,7 +109,12 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 
             {/* 场景标签 */}
             <div className={`inline-flex items-center px-4 py-2 rounded-full ${sceneColor.secondary} text-slate-700 mx-auto block w-fit`}>
-              <span className="mr-2">{sceneIcon}</span>
+              <SceneIcon
+                sceneType={skeletonData.sceneType}
+                size="md"
+                color="secondary"
+                className="mr-2"
+              />
               <span className="font-medium capitalize">{skeletonData.sceneType}</span>
             </div>
 
@@ -155,7 +153,7 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
             {/* 提示信息 */}
             <div className="mt-6 p-4 bg-slate-50 rounded-xl">
               <p className="text-sm text-slate-600 text-center">
-                💡 AI正在为你搜索最佳路线和景点，请稍候...
+                AI正在为你搜索最佳路线和景点，请稍候...
               </p>
             </div>
           </div>
@@ -194,11 +192,11 @@ interface PhaseIndicatorProps {
 
 const PhaseIndicator: React.FC<PhaseIndicatorProps> = ({ currentPhase }) => {
   const phases = [
-    { key: RenderPhase.SKELETON, label: '分析需求', icon: '🔍' },
-    { key: RenderPhase.HEADER, label: '生成框架', icon: '📋' },
-    { key: RenderPhase.OVERVIEW, label: '规划概览', icon: '🗺️' },
-    { key: RenderPhase.DAY_1, label: '第一天行程', icon: '✨' },
-    { key: RenderPhase.REMAINING, label: '完善细节', icon: '📝' }
+    { key: RenderPhase.SKELETON, label: '分析需求', icon: Search },
+    { key: RenderPhase.HEADER, label: '生成框架', icon: Clipboard },
+    { key: RenderPhase.OVERVIEW, label: '规划概览', icon: MapPin },
+    { key: RenderPhase.DAY_1, label: '第一天行程', icon: Sparkles },
+    { key: RenderPhase.REMAINING, label: '完善细节', icon: Calendar }
   ];
 
   const currentIndex = phases.findIndex(p => p.key === currentPhase);
@@ -210,13 +208,13 @@ const PhaseIndicator: React.FC<PhaseIndicatorProps> = ({ currentPhase }) => {
           {/* 阶段圆点 */}
           <div className="flex flex-col items-center">
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all duration-300 ${
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                 index <= currentIndex
                   ? 'bg-blue-500 text-white'
                   : 'bg-slate-200 text-slate-400'
               }`}
             >
-              {phase.icon}
+              <phase.icon className="w-4 h-4" />
             </div>
             <span
               className={`text-xs mt-1 transition-all duration-300 ${

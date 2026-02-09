@@ -120,10 +120,13 @@ export const ReportChatPanel: React.FC<ReportChatPanelProps> = ({
                 disabled={!input.trim() || isAnalyzing || isRegenerating}
                 className="absolute bottom-2 right-2 p-3 rounded-xl
                            bg-morandi-charcoal text-white
-                           hover:bg-morandi-slate hover:scale-105
-                           shadow-md transition-all
+                           hover:bg-morandi-slate hover:scale-105 active:scale-95
+                           shadow-md transition-all duration-200
+                           focus:outline-none focus:ring-2 focus:ring-morandi-sage focus:ring-offset-2
                            disabled:opacity-50 disabled:cursor-not-allowed
-                           disabled:hover:scale-100"
+                           disabled:hover:scale-100 disabled:active:scale-100"
+                aria-label="发送消息"
+                aria-busy={isAnalyzing || isRegenerating}
               >
                 {isAnalyzing || isRegenerating ? (
                   <Loader2 size={18} className="animate-spin" />

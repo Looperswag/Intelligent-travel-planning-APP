@@ -55,7 +55,10 @@ export const OrganizerView: React.FC<OrganizerViewProps> = ({ shareData }) => {
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* 标题 */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">📋 行程准备清单</h2>
+        <h2 className="text-3xl font-bold text-slate-800 mb-2 flex items-center justify-center gap-2">
+          <ClipboardList className="w-8 h-8 text-blue-500" />
+          行程准备清单
+        </h2>
         <p className="text-slate-600">为你的旅行做好充分准备</p>
       </div>
 

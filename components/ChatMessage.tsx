@@ -68,10 +68,12 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
                 <button
                   key={index}
                   onClick={() => onSuggestionClick(suggestion)}
-                  className="w-full text-left px-4 py-3 bg-morandi-base/80 hover:bg-morandi-base border border-morandi-sage/30 hover:border-morandi-sage/50 rounded-xl text-sm text-morandi-charcoal transition-all duration-200 group flex items-center justify-between"
+                  className="w-full text-left px-4 py-3 bg-morandi-base/80 hover:bg-morandi-base border border-morandi-sage/30 hover:border-morandi-sage/50 rounded-xl text-sm text-morandi-charcoal transition-all duration-200 group flex items-center justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-morandi-sage focus:ring-offset-2"
+                  aria-label={`选择建议: ${suggestion}`}
+                  tabIndex={0}
                 >
                   <span>{suggestion}</span>
-                  <Send size={14} className="text-morandi-sage opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Send size={14} className="text-morandi-sage opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                 </button>
               ))}
             </div>

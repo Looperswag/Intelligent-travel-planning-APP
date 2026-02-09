@@ -33,7 +33,10 @@ export const TravelerView: React.FC<TravelerViewProps> = ({ shareData }) => {
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* 标题 */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">✨ 旅程精华</h2>
+        <h2 className="text-3xl font-bold text-slate-800 mb-2 flex items-center justify-center gap-2">
+          <Sparkles className="w-8 h-8 text-purple-500" />
+          旅程精华
+        </h2>
         <p className="text-slate-600">快速了解你的旅行亮点</p>
       </div>
 
